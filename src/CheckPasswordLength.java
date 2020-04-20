@@ -31,7 +31,7 @@ public class CheckPasswordLength {
             String url = createUrl(this.baseUrl, this.username, password, 2);
             URLRequest urlRequest = new URLRequest(url);
             double time = urlRequest.measureConnectionToGivenURL();
-            System.out.println("total median time for length " +i+ "is" + time);
+            System.out.println("total median time for length " +i+ " is " + time);
             timeMeasurements.add(urlRequest.measureConnectionToGivenURL());
             password+="a";
         }

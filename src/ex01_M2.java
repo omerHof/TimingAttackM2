@@ -4,7 +4,8 @@ public class ex01_M2 {
     public static void main(String[] args) {
 
         String userName = "307832972";
-        solvePassword(userName);
+        //solvePassword(userName);
+        testSolvePasswordClass(userName);
     }
 
 
@@ -16,8 +17,14 @@ public class ex01_M2 {
         int length = checkPasswordLength.getLength();
         System.out.println(length);
 
-        SolvePassword solvePassword = new SolvePassword(length,URL ,userName);
+        //SolvePassword solvePassword = new SolvePassword(length,URL ,userName);
 
 
     }
+
+    private static void testSolvePasswordClass(String userName) {
+        SolvePassword solvePassword = new SolvePassword(6,URL,userName,2);
+        solvePassword.solvePassword();
+    }
+
 }
