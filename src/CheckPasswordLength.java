@@ -32,33 +32,47 @@ public class CheckPasswordLength {
      * this function try different lengths and measure their connections to the site
      * fill the ArrayList with sum of times off all length
      */
-    public void measureConnectionWithDifferentLength(){
+    public double measureConnectionWithDifferentLength(){
         timeMeasurements = new ArrayList<>();
         timeMeasurements.add(0.0);
         double bestMeasure;
         double lengthForBestMeasure;
         double diff = 1;
         String password = "a";
+        double threshold=0;
         for (int i=1; i<=maxLength; i++){
-            if(i==6){
-                Collections.sort(timeMeasurements);
-                bestMeasure = timeMeasurements.get(5);
-
-                diff = timeMeasurements.get(4) - timeMeasurements.get(1) ;
+            if(i == 6){
+                threshold = getThreshold(timeMeasurements);
+                for(int j=1; j< 6; j++){
+                    if(timeMeasurements.get(j) > threshold){
+                        return timeMeasurements.get(j);
+                    }
+                }
             }
             System.out.println("Time for length "+ i);
             String url = createUrl(this.baseUrl, this.username, password);
             URLRequest urlRequest = new URLRequest(url);
             double time = urlRequest.measureConnectionToGivenURLMinimum();
-            if((bestMeasure+ diff+1)*5 <time){
-                break;
+            if (i > 6 && time > threshold){
+                return time;
             }
-
             System.out.println("total time for length " +i+ " is " + time);
             timeMeasurements.add(time);
             password+="a";
         }
+        double maxValue=  Collections.max(timeMeasurements);
+        return timeMeasurements.indexOf(maxValue);
     }
+
+    public double getThreshold(ArrayList<Double> timeList){
+        ArrayList<Double> timeListCopy = new ArrayList<>(timeList);
+        Collections.sort(timeListCopy);
+        //assumming 0 is the max time, 4 is min time
+        double SecondMaxTime = timeListCopy.get(1);
+        double threshold = SecondMaxTime + (SecondMaxTime - timeListCopy.get(4)+ 1) * 5;
+        return threshold;
+    }
+
 
 
     /**
