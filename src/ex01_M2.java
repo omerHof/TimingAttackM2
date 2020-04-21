@@ -9,9 +9,6 @@ public class ex01_M2 {
         //testSolvePasswordClass(userName);
     }
 
-
-
-
     private static void solvePassword(String userName, int difficulty) {
         CheckPasswordLength checkPasswordLength = new CheckPasswordLength(URL,userName,difficulty);
         checkPasswordLength.measureConnectionWithDifferentLength();
@@ -20,9 +17,6 @@ public class ex01_M2 {
         //SolvePassword solvePassword = new SolvePassword(length,URL,userName,2);
         //String solved = solvePassword.solvePassword();
         //System.out.println(solved);
-
-
-
     }
 
     private static void testSolvePasswordClass(String userName) {

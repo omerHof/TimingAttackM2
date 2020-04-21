@@ -62,6 +62,11 @@ public class URLRequest {
         }
         double totalMinimumTime = Collections.min(timeList);
 
+        double totalMedianTime = (timeList.get(timeList.size()/2)+ timeList.get(timeList.size()/2-1))/2;
+        double totalMaxTime = Collections.max(timeList);
+        System.out.println("max time is "+ totalMaxTime);
+        System.out.println("min time is "+ totalMinimumTime);
+        System.out.println("median time is "+ totalMedianTime);
         return totalMinimumTime;
     }
 
