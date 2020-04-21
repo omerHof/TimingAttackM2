@@ -55,18 +55,17 @@ public class URLRequest {
 
     public double measureConnectionToGivenURLMinimum(){
         ArrayList<Double> timeList= new ArrayList<>();
-        for(int i=0;i<20;i++){
+        for(int i=0;i<50;i++){
             double time = measureTime();
-            System.out.println(time);
             timeList.add(time);
         }
         double totalMinimumTime = Collections.min(timeList);
 
         double totalMedianTime = (timeList.get(timeList.size()/2)+ timeList.get(timeList.size()/2-1))/2;
         double totalMaxTime = Collections.max(timeList);
-        System.out.println("max time is "+ totalMaxTime);
+        //System.out.println("max time is "+ totalMaxTime);
         System.out.println("min time is "+ totalMinimumTime);
-        System.out.println("median time is "+ totalMedianTime);
+        //System.out.println("median time is "+ totalMedianTime);
         return totalMinimumTime;
     }
 
