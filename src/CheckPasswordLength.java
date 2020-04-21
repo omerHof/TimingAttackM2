@@ -7,14 +7,17 @@ public class CheckPasswordLength {
     private String username;
     private ArrayList<Double> timeMeasurements;
     private final int maxLength = 32;
+    int difficulty;
 
-    public CheckPasswordLength(String baseUrl, String username) {
+    public CheckPasswordLength(String baseUrl, String username, int difficulty) {
         this.baseUrl = baseUrl;
         this.username = username;
+        this.difficulty = difficulty;
+
     }
 
-    private String createUrl(String baseUrl, String username, String password, Integer difficulty){
-        String url_format = baseUrl + "\\?user=%s\\&password=%s\\&difficulty=%d";
+    private String createUrl(String baseUrl, String username, String password){
+        String url_format = baseUrl + "?user=%s&password=%s&difficulty=%d";
         String url = String.format(url_format,username, password, difficulty);
         return url;
     }
@@ -27,12 +30,12 @@ public class CheckPasswordLength {
         timeMeasurements = new ArrayList<>();
         timeMeasurements.add(0.0);
         String password = "a";
-        for (int i=1; i<maxLength; i++){
-            String url = createUrl(this.baseUrl, this.username, password, 2);
+        for (int i=1; i<=maxLength; i++){
+            String url = createUrl(this.baseUrl, this.username, password);
             URLRequest urlRequest = new URLRequest(url);
-            double time = urlRequest.measureConnectionToGivenURL();
-            System.out.println("total median time for length " +i+ " is " + time);
-            timeMeasurements.add(urlRequest.measureConnectionToGivenURL());
+            double time = urlRequest.measureConnectionToGivenURLMinimum();
+            System.out.println("total time for length " +i+ " is " + time);
+            timeMeasurements.add(time);
             password+="a";
         }
     }
@@ -43,6 +46,7 @@ public class CheckPasswordLength {
      * @return the index of max value in timeMeasurements array ==> the length of the password.
      */
     public int getLength(){
+        System.out.println("--------all measurements of password length: -----------------");
         for (double d: timeMeasurements){
             System.out.println(d);
         }

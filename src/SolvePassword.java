@@ -46,7 +46,7 @@ public class SolvePassword {
             password.setCharAt(charPosition,smallLetterByFrequency.get(j));
             String url = createUrl(this.baseUrl, this.username, password.toString(), difficulty);
             URLRequest urlRequest = new URLRequest(url);
-            measureEachChar.put(smallLetterByFrequency.get(j),urlRequest.measureConnectionToGivenURL());
+            measureEachChar.put(smallLetterByFrequency.get(j),urlRequest.measureConnectionToGivenURLMedian());
         }
         char solvedChar = measureEachChar.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey();
         System.out.println("letter in place "+ charPosition + " is "+ solvedChar);
@@ -58,7 +58,7 @@ public class SolvePassword {
             password.setCharAt(charPosition,capitalLetterByFrequency.get(j));
             String url = createUrl(this.baseUrl, this.username, password.toString(), 2);
             URLRequest urlRequest = new URLRequest(url);
-            double time = urlRequest.measureConnectionToGivenURL();
+            double time = urlRequest.measureConnectionToGivenURLMedian();
         }
         return "";
     }
@@ -69,7 +69,7 @@ public class SolvePassword {
             password.setCharAt(charPosition,(char) j);
             String url = createUrl(this.baseUrl, this.username, password.toString(), 2);
             URLRequest urlRequest = new URLRequest(url);
-            double time = urlRequest.measureConnectionToGivenURL();
+            double time = urlRequest.measureConnectionToGivenURLMedian();
         }
         return "";
     }

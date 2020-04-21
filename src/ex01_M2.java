@@ -4,20 +4,23 @@ public class ex01_M2 {
     public static void main(String[] args) {
 
         String userName = "307832972";
-        //solvePassword(userName);
-        testSolvePasswordClass(userName);
+        int difficulty = 2;
+        solvePassword(userName,difficulty);
+        //testSolvePasswordClass(userName);
     }
 
 
 
 
-    private static void solvePassword(String userName) {
-        CheckPasswordLength checkPasswordLength = new CheckPasswordLength(URL,userName);
+    private static void solvePassword(String userName, int difficulty) {
+        CheckPasswordLength checkPasswordLength = new CheckPasswordLength(URL,userName,difficulty);
         checkPasswordLength.measureConnectionWithDifferentLength();
         int length = checkPasswordLength.getLength();
         System.out.println(length);
+        //SolvePassword solvePassword = new SolvePassword(length,URL,userName,2);
+        //String solved = solvePassword.solvePassword();
+        //System.out.println(solved);
 
-        //SolvePassword solvePassword = new SolvePassword(length,URL ,userName);
 
 
     }

@@ -40,7 +40,7 @@ public class URLRequest {
      * help func to measureConnectionWithDifferentLength()
      */
 
-    public double measureConnectionToGivenURL() {
+    public double measureConnectionToGivenURLMedian() {
         ArrayList<Double> timeList= new ArrayList<>();
         for(int i=0;i<10;i++){
             double time = measureTime();
@@ -51,6 +51,18 @@ public class URLRequest {
         double totalMedianTime = (timeList.get(timeList.size()/2)+ timeList.get(timeList.size()/2-1))/2;
 
         return totalMedianTime;
+    }
+
+    public double measureConnectionToGivenURLMinimum(){
+        ArrayList<Double> timeList= new ArrayList<>();
+        for(int i=0;i<20;i++){
+            double time = measureTime();
+            System.out.println(time);
+            timeList.add(time);
+        }
+        double totalMinimumTime = Collections.min(timeList);
+
+        return totalMinimumTime;
     }
 
 }
