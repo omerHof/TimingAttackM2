@@ -23,8 +23,8 @@ public class SolvePassword {
     }
 
     public String solvePassword(){
-        StringBuilder password = createFirstPassword();
-        for (int i=0;i<length;i++){
+        StringBuilder password = new StringBuilder("pxqwojzsqxvueee");
+        for (int i=13;i<length;i++){
             password.setCharAt(i, measureTimeForGivenChars(password,i));
         }
         return password.toString();
@@ -82,4 +82,6 @@ public class SolvePassword {
         String url = String.format(url_format,username, password, difficulty);
         return url;
     }
+
+
 }

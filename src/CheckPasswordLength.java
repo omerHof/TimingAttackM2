@@ -32,7 +32,7 @@ public class CheckPasswordLength {
      * this function try different lengths and measure their connections to the site
      * fill the ArrayList with sum of times off all length
      */
-    public double measureConnectionWithDifferentLength(){
+    public int measureConnectionWithDifferentLength(){
         timeMeasurements = new ArrayList<>();
         timeMeasurements.add(0.0);
         double bestMeasure;
@@ -45,7 +45,7 @@ public class CheckPasswordLength {
                 threshold = getThreshold(timeMeasurements);
                 for(int j=1; j< 6; j++){
                     if(timeMeasurements.get(j) > threshold){
-                        return timeMeasurements.get(j);
+                        return j;
                     }
                 }
             }
@@ -54,7 +54,8 @@ public class CheckPasswordLength {
             URLRequest urlRequest = new URLRequest(url);
             double time = urlRequest.measureConnectionToGivenURLMinimum();
             if (i > 6 && time > threshold){
-                return time;
+                System.out.println("the length is "+ i + " and time is "+ time);
+                return i;
             }
             System.out.println("total time for length " +i+ " is " + time);
             timeMeasurements.add(time);
@@ -68,8 +69,8 @@ public class CheckPasswordLength {
         ArrayList<Double> timeListCopy = new ArrayList<>(timeList);
         Collections.sort(timeListCopy);
         //assumming 0 is the max time, 4 is min time
-        double SecondMaxTime = timeListCopy.get(1);
-        double threshold = SecondMaxTime + (SecondMaxTime - timeListCopy.get(4)+ 1) * 5;
+        double SecondMaxTime = timeListCopy.get(4);
+        double threshold = SecondMaxTime + (SecondMaxTime - timeListCopy.get(1)+ 1) * 5;
         return threshold;
     }
 

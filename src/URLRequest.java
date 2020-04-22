@@ -55,7 +55,7 @@ public class URLRequest {
 
     public double measureConnectionToGivenURLMinimum(){
         ArrayList<Double> timeList= new ArrayList<>();
-        for(int i=0;i<50;i++){
+        for(int i=0;i<10;i++){
             double time = measureTime();
             timeList.add(time);
         }
