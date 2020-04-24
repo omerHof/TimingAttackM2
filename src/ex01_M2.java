@@ -6,19 +6,19 @@ public class ex01_M2 {
     public static void main(String[] args) throws IOException {
 
         //String userName = "207912734";
-        String userName = "307832972";
+        String userName = "308532811";
+        //String pass = "joyemayjbdnvaflb";
         int difficulty = 1;
         //checkPassword();
         solvePassword(userName,difficulty);
-        //testSolvePasswordClass(userName);
+        testSolvePasswordClass(userName);
     }
 
     private static void solvePassword(String userName, int difficulty) throws IOException {
-
-        CheckPasswordLength checkPasswordLength = new CheckPasswordLength(URL,userName,difficulty);
-       int length = checkPasswordLength.measureConnectionWithDifferentLength();
+        CheckPasswordLength checkPasswordLength = new CheckPasswordLength(URL,userName,difficulty);//
+        int length = checkPasswordLength.measureConnectionWithDifferentLength();
        System.out.println(length);
-       Solver solvePassword = new Solver(length,URL,userName,difficulty);
+       Solver solvePassword = new Solver(16,URL,userName,difficulty);
        String solved = solvePassword.solvePassword();
        System.out.println(solved);
        String finaleUrl = URL+"?user="+userName+"&password="+solved+"&difficulty="+difficulty;
@@ -29,7 +29,7 @@ public class ex01_M2 {
     }
 
     public static void checkPassword() throws IOException {
-        String finalurl = URL+"?user=307832972\\&password=pxqwojzsqxvueqb\\&difficulty=1";
+        String finalurl = URL+"?user=308532811&password=joyemayjbdnvaflb&difficulty=1";
         URLRequest urlRequest = new URLRequest(finalurl);
         if (urlRequest.checkPassword()){
             System.out.println(finalurl);

@@ -82,6 +82,8 @@ public class Solver {
             System.out.println("letter in place "+ charPosition + " is "+ solvedChar);
             return solvedChar;
         }else{
+           measurements.keySet();
+           checkLetter =  new ArrayList<>(measurements.keySet());
            measurements = rounds(10, password,charPosition,measurements);
             char solvedChar = measurements.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey();
             System.out.println("letter in place "+ charPosition + " is "+ solvedChar);
@@ -96,8 +98,8 @@ public class Solver {
             if(measurements.size()==0){
                 return riskMeasure;
             }
-            riskMeasure = measurements;
             for(int j=0;j<checkLetter.size();j++){
+                riskMeasure = new HashMap<>(measurements);
                 password.setCharAt(charPosition,checkLetter.get(j));
                 String url = createUrl(this.baseUrl, this.username, password.toString(), difficulty);
                 URLRequest urlRequest = new URLRequest(url);
@@ -113,7 +115,12 @@ public class Solver {
             measurements.keySet();
             checkLetter =  new ArrayList<>(measurements.keySet());
         }
-        return measurements;
+        if(measurements.size()==0){
+            return riskMeasure;
+        }else{
+            return measurements;
+        }
+
     }
 
     private HashMap<Character, Double> allMax(HashMap<Character, Double> measurements) {
