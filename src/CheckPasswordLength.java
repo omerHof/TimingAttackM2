@@ -18,7 +18,7 @@ public class CheckPasswordLength {
     }
 
     private String createUrl(String baseUrl, String username, String password){
-        String url_format = baseUrl + "?user=%s/&password=%s/&difficulty=%d";
+        String url_format = baseUrl + "?user=%s&password=%s&difficulty=%d";
         //String url1 = "http://aoi.ise.bgu.ac.il/\\?user=123\\&password=NaNaKaNaNa\\&difficulty=1";
         //String url2 = "http://aoi.ise.bgu.ac.il/?user=123&password=NaNaKaNaNa&difficulty=1";
 
