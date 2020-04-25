@@ -49,15 +49,15 @@ public class CheckPasswordLength {
                     }
                 }
             }
-            System.out.println("Time for length "+ i);
+            //System.out.println("Time for length "+ i);
             String url = createUrl(this.baseUrl, this.username, password);
             URLRequest urlRequest = new URLRequest(url);
             double time = urlRequest.measureConnectionToGivenURLMinimum();
             if (i > 6 && time > threshold){
-                System.out.println("the length is "+ i + " and time is "+ time);
+                //System.out.println("the length is "+ i + " and time is "+ time);
                 return i;
             }
-            System.out.println("total time for length " +i+ " is " + time);
+            //System.out.println("total time for length " +i+ " is " + time);
             timeMeasurements.add(time);
             password+="a";
         }

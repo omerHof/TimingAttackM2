@@ -6,7 +6,8 @@ public class ex01_M2 {
     public static void main(String[] args) throws IOException {
 
         //String userName = "207912734";
-        String userName = "308532811";
+        String userName = "307832972";
+        //String userName = "308532811";
         //String pass = "joyemayjbdnvaflb";
         int difficulty = 1;
         //checkPassword();
@@ -15,9 +16,9 @@ public class ex01_M2 {
     }
 
     private static void solvePassword(String userName, int difficulty) throws IOException {
-        CheckPasswordLength checkPasswordLength = new CheckPasswordLength(URL,userName,difficulty);//
+        CheckPasswordLength checkPasswordLength = new CheckPasswordLength(URL,userName,difficulty);
         int length = checkPasswordLength.measureConnectionWithDifferentLength();
-       System.out.println(length);
+       System.out.println("Password length is: "+length);
        Solver solvePassword = new Solver(16,URL,userName,difficulty);
        String solved = solvePassword.solvePassword();
        System.out.println(solved);

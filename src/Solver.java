@@ -81,14 +81,16 @@ public class Solver {
             lastWorstTime = measurements.values().stream().findFirst().get();
             System.out.println("letter in place "+ charPosition + " is "+ solvedChar);
             return solvedChar;
-        }else{
-           measurements.keySet();
-           checkLetter =  new ArrayList<>(measurements.keySet());
-           measurements = rounds(10, password,charPosition,measurements);
+        }else {
+
+            measurements.keySet();
+            checkLetter = new ArrayList<>(measurements.keySet());
+            measurements = rounds(10, password, charPosition, measurements);
             char solvedChar = measurements.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey();
-            System.out.println("letter in place "+ charPosition + " is "+ solvedChar);
+            System.out.println("letter in place " + charPosition + " is " + solvedChar);
             lastWorstTime = measurements.get(solvedChar);
             return solvedChar;
+
         }
     }
 
