@@ -69,17 +69,17 @@ public class Solver {
 
         if(checkLetter.size()==1){
             lastWorstTime = measurements.get(checkLetter.get(0));
-            System.out.println("letter in place "+ charPosition + " is "+ checkLetter.get(0));
+            //System.out.println("letter in place "+ charPosition + " is "+ checkLetter.get(0));
             return checkLetter.get(0);
         }
 
-        System.out.println("----reach risk-----");
+        //System.out.println("----reach risk-----");
 
         measurements = allMax(measurements);
         if(measurements.size()==1){
             char solvedChar = measurements.keySet().stream().findFirst().get();
             lastWorstTime = measurements.values().stream().findFirst().get();
-            System.out.println("letter in place "+ charPosition + " is "+ solvedChar);
+            //System.out.println("letter in place "+ charPosition + " is "+ solvedChar);
             return solvedChar;
         }else {
 
@@ -87,7 +87,7 @@ public class Solver {
             checkLetter = new ArrayList<>(measurements.keySet());
             measurements = rounds(10, password, charPosition, measurements);
             char solvedChar = measurements.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey();
-            System.out.println("letter in place " + charPosition + " is " + solvedChar);
+            //System.out.println("letter in place " + charPosition + " is " + solvedChar);
             lastWorstTime = measurements.get(solvedChar);
             return solvedChar;
 

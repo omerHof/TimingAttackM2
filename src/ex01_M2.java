@@ -7,19 +7,19 @@ public class ex01_M2 {
 
         //String userName = "207912734";
         String userName = "307832972";
-        //String userName = "308532811";
-        //String pass = "joyemayjbdnvaflb";
+
+
         int difficulty = 1;
-        //checkPassword();
+
         solvePassword(userName,difficulty);
-        testSolvePasswordClass(userName);
+
     }
 
     private static void solvePassword(String userName, int difficulty) throws IOException {
         CheckPasswordLength checkPasswordLength = new CheckPasswordLength(URL,userName,difficulty);
         int length = checkPasswordLength.measureConnectionWithDifferentLength();
-       System.out.println("Password length is: "+length);
-       Solver solvePassword = new Solver(16,URL,userName,difficulty);
+       //System.out.println("Password length is: "+length);
+       Solver solvePassword = new Solver(length,URL,userName,difficulty);
        String solved = solvePassword.solvePassword();
        System.out.println(solved);
        String finaleUrl = URL+"?user="+userName+"&password="+solved+"&difficulty="+difficulty;

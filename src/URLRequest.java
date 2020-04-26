@@ -45,7 +45,7 @@ public class URLRequest {
         ArrayList<Double> timeList= new ArrayList<>();
         for(int i=0;i<10;i++){
             double time = measureTime();
-            System.out.println(time);
+            //System.out.println(time);
             timeList.add(time);
         }
         Collections.sort(timeList);
@@ -61,7 +61,7 @@ public class URLRequest {
             timeList.add(time);
         }
         double totalMinimumTime = Collections.min(timeList);
-        System.out.println("min time is "+ totalMinimumTime);
+        //System.out.println("min time is "+ totalMinimumTime);
         return totalMinimumTime;
     }
 
